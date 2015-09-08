@@ -1,10 +1,12 @@
 class Fixnum
-  def fizzbuzz
-    str = self % 3 == 0 ? 'Fizz' : ''
-    str += 'Buzz' if self % 5 == 0
+  def fizzbuzz(list = { Fizz: 3, Buzz: 5 })
+    str = list.map { |k, v| k if modulo(v).zero? }.join
     str.empty? ? self : str
   end
 end
 
-puts (1..20).map(&:fizzbuzz).join(', ')
-# p (1..30).map { |num| fizzbuzz(num) }
+list = { Fizz: 3, Buzz: 5, Sivv: 7, Grrr: 13 }
+max = 50_000
+# puts((1..20).map(&:fizzbuzz).join(', '))
+puts((0..max).map { |n| n.fizzbuzz(list) }.join(', '))
+puts max, list
